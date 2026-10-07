@@ -146,7 +146,7 @@ jobs:
 
       - name: Tag & Push
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REGISTRY: ${{ steps.login-ecr-push.outputs.registry }}
           OPG_GOTENBERG: shared/opg-gotenberg
         if: github.actor != 'renovate[bot]'
         run: |
