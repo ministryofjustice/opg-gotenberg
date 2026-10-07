@@ -1,0 +1,233 @@
+version: v1.25.1
+ignore:
+    SNYK-DEBIAN13-ZLIB-19520500:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-SQLITE3-17334397:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-SQLITE3-17334400:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PERL-17037371:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PERL-17960058:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PERL-16896261:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PERL-17037434:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PERL-17960057:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PCRE2-19685515:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-PCRE2-19685522:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19540211:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19540216:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19540223:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19540224:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19540226:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19540237:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBXML2-19669394:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBSSH2-17662015:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBSSH2-18300234:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBSSH2-18300245:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBSSH2-18300251:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-LIBSSH2-18300254:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GZIP-17681798:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740189:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740193:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740198:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740206:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740207:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740209:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-18279890:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GLIB20-17740225:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-GCC14-20386241:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-EXPAT-19964593:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CUPS-15930975:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19652663:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19652682:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19652713:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19652855:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19652923:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19653065:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19653301:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19865350:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-19865413:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-ATTR-17678182:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-ACL-17677866:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+    SNYK-JAVA-ORGAPACHECOMMONS-10734078:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-21T08:00:00.000Z
+            created: 2026-10-07T08:00:00.000Z
+patch:

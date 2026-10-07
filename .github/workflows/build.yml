@@ -1,0 +1,202 @@
+name: Test & Build
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  actions: read
+  checks: write
+  contents: write
+  deployments: none
+  issues: none
+  packages: none
+  pull-requests: write
+  repository-projects: none
+  security-events: write
+  statuses: none
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  create-tag:
+    name: Create Tags
+    uses: ./.github/workflows/create-tags.yml
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Run Tests
+        run: |
+          echo "::warning::Add some tests"
+
+  verify-readonly-fs:
+    name: Verify Read-only Filesystem
+    runs-on: ubuntu-latest
+    env:
+      AWS_ROLE_ARN: ${{ github.ref_name == 'main' && vars.OIDC_SSM_ROLE_ARN || vars.OIDC_SSM_PR_ROLE_ARN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@e6de054238d6b7531b4efff3b6587d9aade6a06c # v6.2.3
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          role-session-name: opg-gotenberg-verify-readonly-fs
+          aws-region: eu-west-1
+
+      - name: Fetch ECS mounts config from SSM
+        id: ssm
+        run: |
+          mounts_json=$(aws ssm get-parameter \
+            --name "/sirius/production/ecs-mounts" \
+            --region eu-west-1 \
+            --query "Parameter.Value" \
+            --output text)
+          echo "mounts_json<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$mounts_json" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Verify docker-compose read_only/tmpfs matches infrastructure
+        uses: ministryofjustice/opg-github-actions/actions/verify-readonly-fs@722a5f955424aaba01e9ca43d68390cd4048d6e1 # v4.10.2
+        with:
+          mounts_json: ${{ steps.ssm.outputs.mounts_json }}
+          service_json: |
+            { "opg-gotenberg": "gotenberg" }
+
+  build:
+    name: Build Image
+    uses: ministryofjustice/opg-github-workflows/.github/workflows/build-multi-architecture-image.yml@17ca444d0b23a0f9f6c612f1bfb8dc9be358f235 # v3.19.6
+    with:
+      image_name: 311462405659.dkr.ecr.eu-west-1.amazonaws.com/shared/opg-gotenberg
+
+  push:
+    name: Push Image
+    runs-on: ubuntu-latest
+    needs: ['create-tag', 'test', 'verify-readonly-fs', 'build']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: '0'
+
+      - name: Set up Docker
+        run: |
+          echo '{"experimental": true, "features": { "containerd-snapshotter": true }}' | sudo tee -a /etc/docker/daemon.json
+          sudo systemctl restart docker
+          docker run --privileged --rm tonistiigi/binfmt --install all
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          path: /tmp/images
+          name: multi-arch-image
+      - name: Load Image
+        run: |
+          docker load -i /tmp/images/multi-arch-image.tar
+
+      - name: Configure OIDC AWS credentials for ECR pull
+        uses: aws-actions/configure-aws-credentials@517a711dbcd0e402f90c77e7e2f81e849156e31d # v6.2.2
+        with:
+          role-to-assume: ${{ vars.OIDC_ECR_PULL_ROLE_ARN }}
+          role-session-name: opg-gotenberg-github-actions-ecr-pull
+          role-duration-seconds: 900
+          aws-region: eu-west-1
+
+      - name: ECR Login
+        id: login-ecr-pull
+        uses: aws-actions/amazon-ecr-login@d539f0932e70871a027e9d5a9d8fc38589180a64 # v2.1.6
+        with:
+          registries: 311462405659
+
+      - name: Snyk Scan
+        uses: ministryofjustice/opg-github-actions/actions/snyk-scan@722a5f955424aaba01e9ca43d68390cd4048d6e1 # v4.10.2
+        with:
+          SNYK_TEST_IMAGE: 311462405659.dkr.ecr.eu-west-1.amazonaws.com/shared/opg-gotenberg:latest
+          SNYK_TOKEN: ${{ secrets.SNYK_OPG_ORG_TOKEN }}
+          snyk_test_args: "--severity-threshold=high"
+
+      - name: Upload Snyk scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@7188fc363630916deb702c7fdcf4e481b751f97a # v4.37.1
+        if: always()
+        with:
+          sarif_file: 'test-results/snyk.sarif'
+
+      - name: Configure OIDC AWS credentials for ECR push
+        uses: aws-actions/configure-aws-credentials@517a711dbcd0e402f90c77e7e2f81e849156e31d # v6.2.2
+        with:
+          role-to-assume: ${{ vars.OIDC_ECR_PUSH_ROLE_ARN }}
+          role-session-name: opg-gotenberg-github-actions-ecr-push
+          role-duration-seconds: 900
+          aws-region: eu-west-1
+
+      - name: ECR Login
+        id: login-ecr-push
+        uses: aws-actions/amazon-ecr-login@d539f0932e70871a027e9d5a9d8fc38589180a64 # v2.1.6
+        with:
+          registries: 311462405659
+
+      - name: Tag & Push
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr-push.outputs.registry }}
+          OPG_GOTENBERG: shared/opg-gotenberg
+        if: github.actor != 'renovate[bot]'
+        run: |
+          docker tag $ECR_REGISTRY/$OPG_GOTENBERG:latest $ECR_REGISTRY/$OPG_GOTENBERG:${{ needs.create-tag.outputs.tag }}
+          if ${{ github.ref_name == 'main' }}
+          then
+            docker tag $ECR_REGISTRY/$OPG_GOTENBERG:latest $ECR_REGISTRY/$OPG_GOTENBERG:main-${{ needs.create-tag.outputs.tag }}
+            docker tag $ECR_REGISTRY/$OPG_GOTENBERG:latest $ECR_REGISTRY/$OPG_GOTENBERG:main-${{ needs.create-tag.outputs.tag }}-${{ needs.create-tag.outputs.timestamp }}
+            # We want all of the tags pushed
+            docker push  --all-tags $ECR_REGISTRY/$OPG_GOTENBERG
+          else
+            docker push $ECR_REGISTRY/$OPG_GOTENBERG:${{ needs.create-tag.outputs.tag }}
+          fi
+
+  end_of_pr_workflow:
+    name: End of PR Workflow
+    runs-on: ubuntu-latest
+    if: always()
+    needs: ['create-tag', 'test', 'verify-readonly-fs', 'build', 'push']
+    steps:
+      - name: End of PR Workflow
+        run: |
+          if ${{ contains(needs.*.result,'failure') }}
+          then
+            echo "Not all checks succedeed, check the previous jobs."
+            exit 1
+          else
+            echo "All checks succedeed!"
+            exit 0
+          fi
+
+  push-tags:
+    runs-on: ubuntu-latest
+    needs: ['create-tag', 'end_of_pr_workflow']
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Configure OIDC AWS credentials for SSM
+        uses: aws-actions/configure-aws-credentials@517a711dbcd0e402f90c77e7e2f81e849156e31d # v6.2.2
+        with:
+          role-to-assume: ${{ vars.OIDC_SSM_ROLE_ARN }}
+          role-session-name: opg-gotenberg-github-actions-ssm-push
+          role-duration-seconds: 900
+          aws-region: eu-west-1
+
+      - name: Push Tag to Parameter Store
+        run: |
+          aws ssm put-parameter --name "opg-gotenberg-latest-green-build" --type "String" --value "${{ needs.create-tag.outputs.tag }}" --overwrite --region=eu-west-1
+
+      # - name: Trigger Dev Deploy
+      #   shell: bash
+      #   run: curl -u ${{ secrets.JENKINS_API_USER }}:${{ secrets.JENKINS_API_TOKEN }} "https://${{ secrets.JENKINS_URL }}/job/Sirius/job/Deploy_to_Development/build?token=${{ secrets.JENKINS_API_TOKEN_NAME }}&cause=Triggered+by+opg-gotenberg"
