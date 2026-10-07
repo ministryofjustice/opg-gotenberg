@@ -1,0 +1,13 @@
+services:
+  opg-gotenberg:
+    container_name: opg-gotenberg
+    image: 311462405659.dkr.ecr.eu-west-1.amazonaws.com/shared/opg-gotenberg:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: false
+    user: gotenberg
+    read_only: true
+    tmpfs:
+      - /tmp:size=536870912
+      - /home/gotenberg:size=67108864
