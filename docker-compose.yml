@@ -11,3 +11,15 @@ services:
     tmpfs:
       - /tmp:size=536870912
       - /home/gotenberg:size=67108864
+    volumes:
+      - goss-bin:/goss-bin:ro
+
+  goss:
+    image: ghcr.io/goss-org/goss@sha256:8d3924f722a04a660e9e6c2403be0399d737c0187fc065714d26b992286c3f0a
+    entrypoint: ["sh", "-c", "cp /usr/bin/goss /goss-bin/goss && cp /goss-src/goss.yaml /goss-bin/goss.yaml"]
+    volumes:
+      - goss-bin:/goss-bin
+      - ./test/goss.yaml:/goss-src/goss.yaml:ro
+
+volumes:
+  goss-bin:

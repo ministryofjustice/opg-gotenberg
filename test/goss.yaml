@@ -1,0 +1,22 @@
+http:
+  http://localhost:3000/health:
+    status: 200
+    method: GET
+    body:
+      - "\"status\":\"up\""
+  http://localhost:3000/forms/chromium/convert/html:
+    status: 200
+    method: POST
+    request-headers:
+      - "Content-Type: multipart/form-data; boundary=----gossBoundary"
+      - "Gotenberg-Output-Filename: goss-test"
+    request-body: |
+      ------gossBoundary
+      Content-Disposition: form-data; name="files"; filename="index.html"
+      Content-Type: text/html
+
+      <html><head></head><body><p>Gotenberg goss test</p></body></html>
+      ------gossBoundary--
+    headers:
+      - "Content-Type: application/pdf"
+      - "Content-Disposition: attachment; filename=\"goss-test.pdf\""

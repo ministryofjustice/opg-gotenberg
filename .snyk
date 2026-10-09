@@ -230,4 +230,49 @@ ignore:
             reason: "Known Gotenberg vuln"
             expires: 2026-10-21T08:00:00.000Z
             created: 2026-10-07T08:00:00.000Z
+    SNYK-DEBIAN13-EXPAT-20514789:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CYRUSSASL2-20652395:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540428:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540437:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540514:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540762:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540795:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540476:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-20540831:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-10-23T08:00:00.000Z
+            created: 2026-10-09T08:00:00.000Z
 patch:
