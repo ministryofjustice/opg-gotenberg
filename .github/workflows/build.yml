@@ -39,8 +39,15 @@ jobs:
       - name: Run Unit Tests
         run: |
           echo "::warning::Add some tests"
-      - name: Run Server Spec
-        run: make server-spec
+      - name: Run Goss Tests
+        run: make test-server-spec
+
+      - name: Upload Goss Junit
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: goss
+          path: |
+            test-results/junit
 
   verify-readonly-fs:
     name: Verify Read-only Filesystem

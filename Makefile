@@ -2,7 +2,7 @@
 build:
 	docker compose build opg-gotenberg
 
-server-spec: setup-directories up run-goss down
+test-server-spec: setup-directories up run-goss down
 
 up:
 	docker compose up -d opg-gotenberg
