@@ -21,5 +21,17 @@ services:
       - goss-bin:/goss-bin
       - ./test/goss.yaml:/goss-src/goss.yaml:ro
 
+  visual-tests:
+    build:
+      context: ./test/visual
+    environment:
+      GOTENBERG_URL: http://opg-gotenberg:3000
+      UPDATE_BASELINES: ${UPDATE_BASELINES:-}
+    volumes:
+      - ./test/visual/baseline:/app/baseline
+      - ./test-results:/app/test-results
+    depends_on:
+      - opg-gotenberg
+
 volumes:
   goss-bin:
