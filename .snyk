@@ -300,4 +300,9 @@ ignore:
             reason: "Known Gotenberg vuln"
             expires: 2026-11-02T08:00:00.000Z
             created: 2026-10-19T08:00:00.000Z
+    SNYK-GOLANG-GITHUBCOMGOMARKDOWNMARKDOWNPARSER-21196716:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-11-02T08:00:00.000Z
+            created: 2026-10-19T08:00:00.000Z
 patch:
