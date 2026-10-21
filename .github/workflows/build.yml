@@ -33,21 +33,24 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Run Unit Tests
-        run: |
-          echo "::warning::Add some tests"
       - name: Run Goss Tests
         run: make test-server-spec
 
-      - name: Upload Goss Junit
+      - name: Run Visual Regression Tests
+        if: ${{ !cancelled() }}
+        run: make test-visual
+
+      - name: Upload Test Results
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: goss
+          name: test-results
           path: |
             test-results/junit
+            test-results/images
 
   verify-readonly-fs:
     name: Verify Read-only Filesystem
