@@ -1,3 +1,3 @@
-FROM gotenberg/gotenberg:8.37.0@sha256:f29984bd1e226bf1b93ba90af06000afa8b315853e99d27b9aaa41b93f15c769 AS build
+FROM gotenberg/gotenberg:8.37.0-chromium@sha256:0d28ae9a96441588ef739623726bd500ad0720b77266c6f1351a13e333fbd61c AS build
 
 # base image already has non-root "gotenberg" user (uid/gid 1001)
