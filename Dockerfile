@@ -9,7 +9,21 @@ RUN set -eux; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*
 
-# build gotenberg binary with patched Go (heavy handed possibly remove)
+# potentially not worth patching
+FROM alpine:3.24.3@sha256:b3413572228e34bd1c9245f5565e6cd127005655e8a7899aef33d8e83255c9e6 AS jar-patch
+ARG COMMONS_LANG3_VERSION=3.18.0
+ARG COMMONS_LANG3_SHA1=fb14946f0e39748a6571de0635acbe44e7885491
+RUN apk add --no-cache curl zip unzip
+COPY --from=gotenberg-base /usr/bin/pdftk-all.jar /work/pdftk-all.jar
+WORKDIR /work
+RUN set -eux; \
+    curl -fsSLo cl3.jar https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/${COMMONS_LANG3_VERSION}/commons-lang3-${COMMONS_LANG3_VERSION}.jar; \
+    echo "${COMMONS_LANG3_SHA1}  cl3.jar" | sha1sum -c -; \
+    mkdir new && unzip -q cl3.jar -d new 'org/*' 'META-INF/maven/org.apache.commons/*'; \
+    zip -q -d pdftk-all.jar 'org/apache/commons/lang3/*' 'META-INF/maven/org.apache.commons/commons-lang3/*'; \
+    (cd new && zip -q -r ../pdftk-all.jar .)
+
+# build gotenberg binary with patched Go (ideally remove when gotenberg updates go)
 FROM golang:1.27.3-trixie@sha256:fbb7ae40b62ff8afe31662df570d39b4f5052ac32b90dae8e60d7657a20a74f4 AS go-patch
 ENV CGO_ENABLED=0
 ADD https://github.com/gotenberg/gotenberg.git#e4ee0f29d648f8d5a0a766dd797d108361905deb /src
@@ -23,4 +37,5 @@ RUN go build -o /out/gotenberg-chromium \
 FROM gotenberg-base AS production
 COPY --from=apt-patch /usr /usr
 COPY --from=apt-patch /var/lib/dpkg /var/lib/dpkg
+COPY --from=jar-patch --chmod=0644 /work/pdftk-all.jar /usr/bin/pdftk-all.jar
 COPY --from=go-patch --chmod=0755 /out/gotenberg-chromium /usr/bin/gotenberg
