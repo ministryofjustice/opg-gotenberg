@@ -305,4 +305,24 @@ ignore:
             reason: "Known Gotenberg vuln"
             expires: 2026-11-03T08:00:00.000Z
             created: 2026-10-19T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-21368189:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-11-03T08:00:00.000Z
+            created: 2026-10-19T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-21368491:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-11-03T08:00:00.000Z
+            created: 2026-10-19T08:00:00.000Z
+    SNYK-DEBIAN13-CHROMIUM-21369324:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-11-03T08:00:00.000Z
+            created: 2026-10-19T08:00:00.000Z
+    SNYK-GOLANG-STDCRYPTOX509-21400137:
+        - '*':
+            reason: "Known Gotenberg vuln"
+            expires: 2026-11-03T08:00:00.000Z
+            created: 2026-10-19T08:00:00.000Z
 patch:
