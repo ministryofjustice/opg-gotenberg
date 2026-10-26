@@ -1,4 +1,4 @@
-FROM golang:1.27.2-trixie
+FROM golang:1.27.3-trixie
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends poppler-utils \
