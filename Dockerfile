@@ -33,7 +33,9 @@ ADD https://github.com/gotenberg/gotenberg.git#e4ee0f29d648f8d5a0a766dd797d10836
 ADD https://github.com/pdfcpu/pdfcpu.git#f2686555086a2e76dc19f602ea1897f6e3baae4d /src/pdfcpu
 
 WORKDIR /src/gotenberg
-RUN go mod download && go mod verify \
+RUN go get github.com/labstack/echo/v5@7c312e09d96ac13bdb6d32748dacbfcc689a2480 \
+    && go mod tidy \
+    && go mod download && go mod verify \
     && go build -o /out/gotenberg-chromium \
        -ldflags "-s -w -X 'github.com/gotenberg/gotenberg/v8/cmd.Version=${GOTENBERG_VERSION}'" \
        cmd/gotenberg-chromium/main.go
