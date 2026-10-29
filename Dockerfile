@@ -1,4 +1,4 @@
-FROM gotenberg/gotenberg:8.38.1-chromium@sha256:5da4ab7b8fe7326537369e17b661be765d9a2887f77722faacdbe6d55812fb96 AS gotenberg-base
+FROM gotenberg/gotenberg:8.39.0-chromium@sha256:558943677cf9092df83ff654c2645856dcb9ddf777f359243789688e74f3bcdd AS gotenberg-base
 
 FROM gotenberg-base AS apt-patch
 USER root
@@ -25,7 +25,7 @@ RUN set -eux; \
 
 # build gotenberg binary from patched Go (ideally remove when gotenberg updates go)
 FROM golang:1.27.3-trixie@sha256:fbb7ae40b62ff8afe31662df570d39b4f5052ac32b90dae8e60d7657a20a74f4 AS go-patch
-ARG GOTENBERG_VERSION=8.38.1
+ARG GOTENBERG_VERSION=8.39.0
 ARG PDFCPU_VERSION=v0.15.0
 ENV CGO_ENABLED=0
 
