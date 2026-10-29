@@ -88,7 +88,7 @@ jobs:
 
   build:
     name: Build Image
-    uses: ministryofjustice/opg-github-workflows/.github/workflows/build-multi-architecture-image.yml@54c2ae52e1361f11d2623a3627bdf2c5ca2c3f0c # v3.19.18
+    uses: ministryofjustice/opg-github-workflows/.github/workflows/build-multi-architecture-image.yml@11715bf7e74f8c0429fff4c719462a6f5a5582cd # v3.19.22
     with:
       image_name: 311462405659.dkr.ecr.eu-west-1.amazonaws.com/shared/opg-gotenberg
       build_options: --target production
@@ -131,7 +131,7 @@ jobs:
           registries: 311462405659
 
       - name: Snyk Scan
-        uses: ministryofjustice/opg-github-actions/actions/snyk-scan@ae37b9b322286123971417e82b665e56e9d6aa3f # v4.10.3
+        uses: ministryofjustice/opg-github-actions/actions/snyk-scan@12bdbe54f92af873347bc0cd6f4e7769265c1a90 # v4.10.5
         with:
           SNYK_TEST_IMAGE: 311462405659.dkr.ecr.eu-west-1.amazonaws.com/shared/opg-gotenberg:latest
           SNYK_TOKEN: ${{ secrets.SNYK_OPG_ORG_TOKEN }}
