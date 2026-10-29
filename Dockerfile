@@ -5,7 +5,7 @@ USER root
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends --only-upgrade \
-        chromium chromium-common libexpat1; \
+        ca-certificates chromium chromium-common libexpat1; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*
 
