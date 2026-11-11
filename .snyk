@@ -4,81 +4,121 @@ ignore:
     SNYK-DEBIAN13-ZLIB-19520500:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19540211:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19540216:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19540223:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19540224:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19540226:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19540237:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-LIBXML2-19669394:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-CYRUSSASL2-20652395:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-CUPS-15930975:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-CHROMIUM-21368189:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-CHROMIUM-21368491:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-CHROMIUM-21369324:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-ATTR-17678182:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
     SNYK-DEBIAN13-ACL-17677866:
         - '*':
             reason: "No Debian fix available"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
+    SNYK-DEBIAN13-KRB5-22384443:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-KRB5-22384445:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-KRB5-22384446:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-KRB5-22384456:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-KRB5-22398894:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-KRB5-22398919:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-EXPAT-21762794:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
+    SNYK-DEBIAN13-EXPAT-21762798:
+        - '*':
+            reason: "No Debian fix available"
+            expires: 2026-11-30T08:00:00.000Z
+            created: 2026-11-11T08:00:00.000Z
     SNYK-GOLANG-GITHUBCOMGOMARKDOWNMARKDOWNPARSER-21196716:
         - '*':
             reason: "No fix yet"
-            expires: 2026-11-03T08:00:00.000Z
+            expires: 2026-11-30T08:00:00.000Z
             created: 2026-10-22T08:00:00.000Z
 patch:
