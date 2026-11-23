@@ -1,4 +1,4 @@
-FROM gotenberg/gotenberg:8.39.0-chromium@sha256:558943677cf9092df83ff654c2645856dcb9ddf777f359243789688e74f3bcdd AS gotenberg-base
+FROM gotenberg/gotenberg:8.40.0-chromium@sha256:a03fb9f9a7db6e1ff9b798137f3d9f60601ded73fe626b10fa72c920360b0efd AS gotenberg-base
 
 FROM gotenberg-base AS apt-patch
 USER root
@@ -10,7 +10,7 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*
 
 # potentially not worth patching
-FROM alpine:3.24.3@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a AS jar-patch
+FROM alpine:3.24.4@sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf AS jar-patch
 ARG COMMONS_LANG3_VERSION=3.18.0
 ARG COMMONS_LANG3_SHA1=fb14946f0e39748a6571de0635acbe44e7885491
 RUN apk add --no-cache curl zip unzip
@@ -24,7 +24,7 @@ RUN set -eux; \
     (cd new && zip -q -r ../pdftk-all.jar .)
 
 # build gotenberg binary from patched Go (ideally remove when gotenberg updates go)
-FROM golang:1.27.3-trixie@sha256:af1bfc2614ebb1dbd31af514b78740fd678850e76498762b425ecee4c5c6ea80 AS go-patch
+FROM golang:1.27.4-trixie@sha256:f18c3d73a184fb0582828510722e723b63a93f7188d11dd223d9be6f6880e65d AS go-patch
 ARG BROTOLI_COMMIT=33c2a9884269798192b5ecf171288f98939dbe42
 ARG ECHO_COMMIT=a6a9673a54d2c719ceb32ce6a929d35483acfb2b
 ARG GO_JOSE_COMMIT=a0111f82742fa92bceec9ede40845e73319e6230
