@@ -24,7 +24,7 @@ RUN set -eux; \
     (cd new && zip -q -r ../pdftk-all.jar .)
 
 # build gotenberg binary from patched Go (ideally remove when gotenberg updates go)
-FROM golang:1.27.3-trixie@sha256:fbb7ae40b62ff8afe31662df570d39b4f5052ac32b90dae8e60d7657a20a74f4 AS go-patch
+FROM golang:1.27.3-trixie@sha256:af1bfc2614ebb1dbd31af514b78740fd678850e76498762b425ecee4c5c6ea80 AS go-patch
 ARG BROTOLI_COMMIT=33c2a9884269798192b5ecf171288f98939dbe42
 ARG ECHO_COMMIT=a6a9673a54d2c719ceb32ce6a929d35483acfb2b
 ARG GO_JOSE_COMMIT=a0111f82742fa92bceec9ede40845e73319e6230
