@@ -1,4 +1,4 @@
-FROM gotenberg/gotenberg:8.39.0-chromium@sha256:558943677cf9092df83ff654c2645856dcb9ddf777f359243789688e74f3bcdd AS gotenberg-base
+FROM gotenberg/gotenberg:8.40.0-chromium@sha256:a03fb9f9a7db6e1ff9b798137f3d9f60601ded73fe626b10fa72c920360b0efd AS gotenberg-base
 
 FROM gotenberg-base AS apt-patch
 USER root
@@ -10,7 +10,7 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*
 
 # potentially not worth patching
-FROM alpine:3.24.3@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a AS jar-patch
+FROM alpine:3.24.4@sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf AS jar-patch
 ARG COMMONS_LANG3_VERSION=3.18.0
 ARG COMMONS_LANG3_SHA1=fb14946f0e39748a6571de0635acbe44e7885491
 RUN apk add --no-cache curl zip unzip
